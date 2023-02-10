@@ -1,17 +1,32 @@
 
 // AppID
 const APPID = "0bed6060-47a2-4594-8a5a-5bb3ff8a01d7";
-function createMarker(long, lat)
+const markers = [];
+function createMarker(response)
 {
-    new mapboxgl.Marker().setLngLat([long, lat]).addTo(map);
+    const marker = 
+    {
+        mapboxgl: new mapboxgl.Marker(),
+        Code: response.Code,
+        Lat: response.Lat,
+        Long: response.Long,
+        MeasureParameters: response.MeasureParameters
+    };
+    marker.mapboxgl.setLngLat([response.Long, response.Lat]).addTo(map);
+    marker.mapboxgl.getElement().dataset.stationCode = response.Code;
+    return marker;
+
 };
 
 fetch(`http://data.goteborg.se/riverservice/v1.1/measuresites/${APPID}?format=JSON`)
     .then((response) => response.json())
     .then((response) => {
+
         response.forEach((station) => {
-            createMarker(station.Long, station.Lat);
+            markers.push(createMarker(station));
         })
+
+        console.log(markers);
 });
     
 // //GET ALL SITES
