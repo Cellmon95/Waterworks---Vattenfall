@@ -1,8 +1,7 @@
-
-// AppID
 const APPID = "0bed6060-47a2-4594-8a5a-5bb3ff8a01d7";
 const markers = [];
-function createMarker(response)
+
+function createAddMarker(response)
 {
     const marker = 
     {
@@ -12,32 +11,30 @@ function createMarker(response)
         Long: response.Long,
         MeasureParameters: response.MeasureParameters
     };
+
     marker.mapboxgl.setLngLat([response.Long, response.Lat]).addTo(map);
     marker.mapboxgl.getElement().dataset.stationCode = response.Code;
+    marker.mapboxgl.getElement().addEventListener('click', onClickMarker);
+    marker.mapboxgl.getElement().classList.add("marker");
+    
     return marker;
 
 };
+
+function onClickMarker(e) {
+    targetId = e.currentTarget.dataset.stationCode;
+    stationData = markers[targetId];
+}
 
 fetch(`http://data.goteborg.se/riverservice/v1.1/measuresites/${APPID}?format=JSON`)
     .then((response) => response.json())
     .then((response) => {
 
         response.forEach((station) => {
-            markers.push(createMarker(station));
+            markers[station.Code] = createAddMarker(station);
         })
-
-        console.log(markers);
+        // console.log(markers);
 });
-    
-// //GET ALL SITES
-// fetch(`http://data.goteborg.se/riverservice/v1.1/measuresites/${APPID}?format=JSON`)
-// .then((response) => response.json())
-// .then((data) => console.log(data));
-
-// //GET ONE SITE
-// fetch(`http://data.goteborg.se/RiverService/v1.1/MeasureSites/${APPID}/Agnesberg?format=JSON`)
-// .then((response) => response.json())
-// .then((data) => console.log(data));
 
 //MAP
 /* Annas access token */
@@ -53,9 +50,3 @@ zoom: 12,
 minZoom: 11,
 maxZoom: 18
 });
-
-/* Old Marker */
-// const marker =
-// new mapboxgl.Marker()
-// .setLngLat([12.0101, 57.7898])
-// .addTo(map);
