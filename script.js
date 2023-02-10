@@ -1,21 +1,18 @@
 
 // AppID
 const APPID = "0bed6060-47a2-4594-8a5a-5bb3ff8a01d7";
-
+function createMarker(long, lat)
+{
+    new mapboxgl.Marker().setLngLat([long, lat]).addTo(map);
+};
 
 fetch(`http://data.goteborg.se/riverservice/v1.1/measuresites/${APPID}?format=JSON`)
     .then((response) => response.json())
     .then((response) => {
         response.forEach((station) => {
-            console.log(station);
+            createMarker(station.Long, station.Lat);
         })
-        });
-
-
-//         // const marker =
-// new mapboxgl.Marker()
-// .setLngLat([12.0101, 57.7898])
-// .addTo(map);
+});
     
 // //GET ALL SITES
 // fetch(`http://data.goteborg.se/riverservice/v1.1/measuresites/${APPID}?format=JSON`)
@@ -42,19 +39,8 @@ minZoom: 11,
 maxZoom: 18
 });
 
+/* Old Marker */
 // const marker =
 // new mapboxgl.Marker()
 // .setLngLat([12.0101, 57.7898])
 // .addTo(map);
-
-
-function loopLongLatAddMarker(
-    long,
-    lat
-  ) {
-    new mapboxgl.Marker()
-    .setLngLat([long, lat])
-    .addTo(map);
-
-  }
-
