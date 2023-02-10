@@ -3,6 +3,10 @@
     margin:0;
   }
 
+  .marker {
+    background-image: "/src/plupp.svg";
+  }
+
   .marker svg path {
     fill: orangered;
   }
@@ -10,3 +14,9 @@
   .marker svg path {
     opacity: 50%;
   }
+
+  .marker:hover svg path {
+    fill: green;
+  }
+
+  /* .marker:hover svg:not() */
