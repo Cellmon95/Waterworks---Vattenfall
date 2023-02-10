@@ -14,16 +14,23 @@ function createMarker(response)
     };
     marker.mapboxgl.setLngLat([response.Long, response.Lat]).addTo(map);
     marker.mapboxgl.getElement().dataset.stationCode = response.Code;
+    marker.mapboxgl.getElement().addEventListener('click', onClickMarker);
+    
     return marker;
 
 };
+
+function onClickMarker(e) {
+    targetId = e.currentTarget.dataset.stationCode;
+    locationData = markers[targetId];
+}
 
 fetch(`http://data.goteborg.se/riverservice/v1.1/measuresites/${APPID}?format=JSON`)
     .then((response) => response.json())
     .then((response) => {
 
         response.forEach((station) => {
-            markers.push(createMarker(station));
+            markers[station.Code] = createMarker(station);
         })
 
         console.log(markers);
