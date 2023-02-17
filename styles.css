@@ -5,7 +5,7 @@
   @font-face {
     font-family: "Nunito";
     src: local("Nunito"),
-    url("/src/fonts/Nunito-VariableFont_wght.ttf");
+    url("src/fonts/Nunito-VariableFont_wght.ttf");
   }
 
   html,body {
@@ -19,7 +19,7 @@
   }
 
   .marker {
-    background-image: url('/src/marker-icon.svg');
+    background-image: url('src/marker-icon.svg');
     background-size: 100%;
     width: 25px;
     height: 43px;
@@ -53,10 +53,8 @@
   margin: auto;
   padding: 4rem;
   z-index: 1;
-
   background-color: #F3F8FA;
   border: 1px solid #085677;
-
 }
 
 h3 {
@@ -71,5 +69,21 @@ h4, p {
 
 td {
   font-size: 0.8rem;
+}
+
+.exitButton {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exitButton img {
+  object-fit: cover;
 }
 

@@ -1,6 +1,7 @@
 const APPID = "0bed6060-47a2-4594-8a5a-5bb3ff8a01d7";
 const markers = [];
 const infoBox = document.querySelector(".infoBox");
+const exitBox = document.querySelector(".exitButton");
 
 function createAddMarker(response) {
   const customMarker = document.createElement("svg");
@@ -9,6 +10,7 @@ function createAddMarker(response) {
   const marker = {
     mapboxgl: new mapboxgl.Marker(customMarker),
     Code: response.Code,
+    Name: response.Description,
     Lat: response.Lat,
     Long: response.Long,
     MeasureParameters: response.MeasureParameters,
@@ -17,19 +19,26 @@ function createAddMarker(response) {
   marker.mapboxgl.setLngLat([response.Long, response.Lat]).addTo(map);
   marker.mapboxgl.getElement().dataset.stationCode = response.Code;
   marker.mapboxgl.getElement().addEventListener("click", onClickMarker);
-  marker.mapboxgl.getElement().addEventListener("click", hoverToggle);
-//   marker.mapboxgl.getElement().addEventListener("mouseleave", hoverToggle);
-
+  marker.mapboxgl.getElement().addEventListener("click", onClickOpenInfoBox);
+//   marker.mapboxgl.getElement().addEventListener("mouseleave", onClickOpenInfoBox);
   // marker.mapboxgl.getElement().classList.add("marker"); // Remove? Might not need this after adding "customMarker".
 
   return marker;
 }
 
-function hoverToggle(e) {
+
+
+function onClickOpenInfoBox(e) {
 //   e.currentTarget.classList.toggle("active");
 //   console.log(e.currentTarget.classList);
   infoBox.classList.add("active");
 }
+
+function closeInfoBox() {
+    infoBox.classList.remove("active");
+}
+
+exitBox.addEventListener("click", closeInfoBox);
 
 function checkIfUndefined(target) {
   if (target === undefined) {
@@ -42,6 +51,17 @@ function onClickMarker(e) {
   /* targetID shows stationCode (name for code purposes) */
   targetId = e.currentTarget.dataset.stationCode;
   /* stationData shows target station data */
+
+  // Name
+  const header = document.getElementById("stationName");
+  header.innerHTML = markers[targetId].Name;
+
+  //Lat (stationLat)
+
+  //Long (stationLong)
+  
+
+
 
   // Water Level
   const waterLevelDOM = document.getElementById("waterLevel");
@@ -94,7 +114,7 @@ fetch(
     response.forEach((station) => {
       markers[station.Code] = createAddMarker(station);
     });
-    // console.log(markers);
+    console.log(markers);
   });
 
 mapboxgl.accessToken =
