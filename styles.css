@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin:0;
   }
-  
+
   .marker {
     background-image: url('/src/marker-icon.svg');
     background-size: 100%;
@@ -20,3 +20,19 @@
   }
 
 
+ /* .marker:hover svg:not() */
+
+/* Info Box */
+/* .hidden {
+  display: none;
+} */
+
+.InfoBox {
+  position: fixed;
+  height: 370;
+  width: 90%;
+  margin: auto;
+
+  background-color: #F3F8FA;
+
+}
