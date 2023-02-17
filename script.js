@@ -34,7 +34,15 @@ function onClickMarker(e) {
     /* targetID shows stationCode (name for code purposes) */
     targetId = e.currentTarget.dataset.stationCode;
     /* stationData shows target station data */
-    stationData = markers[targetId];
+
+    const waterLevelDOM = document.getElementById('waterLevel');
+    console.log(waterLevelDOM.innerHTML = markers[targetId].MeasureParameters[0]);
+    waterLevelDOM.innerHTML = markers[targetId].MeasureParameters[0].CurrentValue;
+    const levelDownstreamDOM = document.getElementById('levelDownstream');
+    const tappingDOM = document.getElementById('tapping');
+    const lowerLimitDOM = document.getElementById('lowerLimit');
+    const upperLimitDOM = document.getElementById('upperLimit');
+    
 }
 
 fetch(`http://data.goteborg.se/riverservice/v1.1/measuresites/${APPID}?format=JSON`)
