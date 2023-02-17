@@ -8,7 +8,7 @@
     url("/src/fonts/Nunito-VariableFont_wght.ttf");
   }
 
-  html,body{
+  html,body {
     box-sizing: border-box;
     margin:0;
     display: flex;
@@ -38,11 +38,11 @@
  /* .marker:hover svg:not() */
 
 /* Info Box */
-/* .hidden {
-  display: none;
-} */
-
 .infoBox {
+  display: none;
+}
+
+.infoBox.active {
   display: flex;
   flex-direction: column;
   justify-content: center;
