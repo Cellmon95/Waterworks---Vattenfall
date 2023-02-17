@@ -1,6 +1,10 @@
   html,body{
     box-sizing: border-box;
     margin:0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
   }
 
   .marker {
@@ -27,11 +31,12 @@
   display: none;
 } */
 
-.InfoBox {
-  position: fixed;
-  height: 370;
+.infoBox {
+  position: absolute;
+  height: 40%;
   width: 90%;
   margin: auto;
+  z-index: 1;
 
   background-color: #F3F8FA;
 
