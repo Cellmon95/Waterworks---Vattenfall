@@ -3,9 +3,12 @@ const markers = [];
 
 function createAddMarker(response)
 {
+    const customMarker = document.createElement('svg');
+    customMarker.className = 'marker';
+
     const marker = 
     {
-        mapboxgl: new mapboxgl.Marker(),
+        mapboxgl: new mapboxgl.Marker(customMarker),
         Code: response.Code,
         Lat: response.Lat,
         Long: response.Long,
@@ -15,14 +18,22 @@ function createAddMarker(response)
     marker.mapboxgl.setLngLat([response.Long, response.Lat]).addTo(map);
     marker.mapboxgl.getElement().dataset.stationCode = response.Code;
     marker.mapboxgl.getElement().addEventListener('click', onClickMarker);
-    marker.mapboxgl.getElement().classList.add("marker");
+    marker.mapboxgl.getElement().addEventListener('mouseenter', hoverToggle);
+    marker.mapboxgl.getElement().addEventListener('mouseleave', hoverToggle);
+    // marker.mapboxgl.getElement().classList.add("marker"); // Remove? Might not need this after adding "customMarker".
     
     return marker;
-
 };
 
+function hoverToggle(e) {
+    e.currentTarget.classList.toggle("active")
+    console.log(e.currentTarget.classList);
+}
+
 function onClickMarker(e) {
+    /* targetID shows stationCode (name for code purposes) */
     targetId = e.currentTarget.dataset.stationCode;
+    /* stationData shows all stations data */
     stationData = markers[targetId];
 }
 
@@ -36,11 +47,7 @@ fetch(`http://data.goteborg.se/riverservice/v1.1/measuresites/${APPID}?format=JS
         // console.log(markers);
 });
 
-//MAP
-/* Annas access token */
 mapboxgl.accessToken = 'pk.eyJ1IjoidGVhbXZhdHRlbmZhbGwiLCJhIjoiY2xkdWFkbHN4MDN3MTQzbzVpa3ZydnhobiJ9.s1jE7Ai0VbUH3fxiZojDPg';
-/* Rubens access token */
-// mapboxgl.accessToken = 'pk.eyJ1IjoidGVhbXZhdHRlbmZhbGwiLCJhIjoiY2xkdWFpZGwyMDQwMjN2bWZvYm4wZmoxMSJ9.q4S7xLi6-45dT97-hzr_zg';
 
 var map = new mapboxgl.Map({
 container: 'map',

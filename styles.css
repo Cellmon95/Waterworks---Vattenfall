@@ -2,21 +2,21 @@
     box-sizing: border-box;
     margin:0;
   }
-
+  
   .marker {
-    background-image: "/src/plupp.svg";
+    background-image: url('/src/marker-icon.svg');
+    background-size: 100%;
+    width: 25px;
+    height: 43px;
+    display: block;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+
+  .marker:hover {
+    filter: opacity(0.5);
   }
 
-  .marker svg path {
-    fill: orangered;
-  }
 
-  .marker svg path {
-    opacity: 50%;
-  }
-
-  .marker:hover svg path {
-    fill: green;
-  }
-
-  /* .marker:hover svg:not() */
