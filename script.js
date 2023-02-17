@@ -1,5 +1,6 @@
 const APPID = "0bed6060-47a2-4594-8a5a-5bb3ff8a01d7";
 const markers = [];
+const infoBox = document.querySelector(".infoBox");
 
 function createAddMarker(response) {
   const customMarker = document.createElement("svg");
@@ -16,17 +17,20 @@ function createAddMarker(response) {
   marker.mapboxgl.setLngLat([response.Long, response.Lat]).addTo(map);
   marker.mapboxgl.getElement().dataset.stationCode = response.Code;
   marker.mapboxgl.getElement().addEventListener("click", onClickMarker);
-  marker.mapboxgl.getElement().addEventListener("mouseenter", hoverToggle);
-  marker.mapboxgl.getElement().addEventListener("mouseleave", hoverToggle);
+  marker.mapboxgl.getElement().addEventListener("click", hoverToggle);
+//   marker.mapboxgl.getElement().addEventListener("mouseleave", hoverToggle);
+
   // marker.mapboxgl.getElement().classList.add("marker"); // Remove? Might not need this after adding "customMarker".
 
   return marker;
 }
 
 function hoverToggle(e) {
-  e.currentTarget.classList.toggle("active");
-  console.log(e.currentTarget.classList);
+//   e.currentTarget.classList.toggle("active");
+//   console.log(e.currentTarget.classList);
+  infoBox.classList.add("active");
 }
+
 function checkIfUndefined(target) {
   if (target === undefined) {
     return true;
