@@ -33,7 +33,7 @@ function hoverToggle(e) {
 function onClickMarker(e) {
     /* targetID shows stationCode (name for code purposes) */
     targetId = e.currentTarget.dataset.stationCode;
-    /* stationData shows all stations data */
+    /* stationData shows target station data */
     stationData = markers[targetId];
 }
 
