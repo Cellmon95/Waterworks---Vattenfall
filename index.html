@@ -1,24 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
 
-    <link rel="stylesheet" href="styles.css">
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
-
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
-</head>
-<body>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
+  </head>
+  <body>
     <div class="hidden infoBox">
-
+      <h3>Agnesberg</h3>
+      <p>Lat: 57.7898</p>
+      <p>Long: 12.0101</p>
+      <h4>Mätvärden</h4>
+      <table>
+        <tr>
+          <td>Vattennivå :</td>
+          <td>121,12</td>
+        </tr>
+        <tr>
+          <td>Nivå nedströms dämme :</td>
+          <td>121,12</td>
+        </tr>
+        <tr>
+          <td>Flöde/tappning (m³/s) :</td>
+          <td>121,12</td>
+        </tr>
+        <tr>
+          <td>Undre riskgräns :</td>
+          <td>121,12</td>
+        </tr>
+        <tr>
+          <td>Övre riskgräns :</td>
+          <td>121,12</td>
+        </tr>
+      </table>
     </div>
-    <div id='map' style='width: 100vw; height: 100vh; filter:saturate()'></div>
+    <div id="map" style="width: 100vw; height: 100vh; filter: saturate()"></div>
 
-    
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

@@ -1,10 +1,21 @@
+  * {
+    box-sizing: border-box;
+  }
+
+  @font-face {
+    font-family: "Nunito";
+    src: local("Nunito"),
+    url("/src/fonts/Nunito-VariableFont_wght.ttf");
+  }
+
   html,body{
     box-sizing: border-box;
     margin:0;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-
+    font-family: "Nunito";
+    color: #085677;
   }
 
   .marker {
@@ -32,12 +43,33 @@
 } */
 
 .infoBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   height: 40%;
   width: 90%;
   margin: auto;
+  padding: 4rem;
   z-index: 1;
 
   background-color: #F3F8FA;
+  border: 1px solid #085677;
 
 }
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+h4, p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+td {
+  font-size: 0.8rem;
+}
+
