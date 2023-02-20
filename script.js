@@ -62,11 +62,11 @@ function onClickMarker(e) {
 
   //Lat (stationLat)
   const infoLatitude = document.getElementById("stationLat");
-  infoLatitude.innerHTML = markers[targetId].Lat;
+  infoLatitude.innerHTML = "Position: "+ markers[targetId].Lat;
 
   //Long (stationLong)
   const infoLongitude = document.getElementById("stationLong");
-  infoLongitude.innerHTML = markers[targetId].Long;
+  infoLongitude.innerHTML = ",  " + markers[targetId].Long;
 
 
 
