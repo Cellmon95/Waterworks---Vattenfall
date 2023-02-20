@@ -2,7 +2,13 @@ const APPID = "0bed6060-47a2-4594-8a5a-5bb3ff8a01d7";
 const markers = [];
 const infoBox = document.querySelector(".infoBox");
 const exitBox = document.querySelector(".exitButton");
-
+const DOMelementsName = [
+  'waterLevel',
+  'levelDownstream',
+  'tapping',
+  'lowerLimit',
+  'upperLimit'
+];
 function createAddMarker(response) {
   const customMarker = document.createElement("svg");
   customMarker.className = "marker";
@@ -46,16 +52,18 @@ function checkIfUndefined(target) {
   return false;
 }
 
+function fillDOMElement(element, targetId, measureParIndex) {
+  if (checkIfUndefined(markers[targetId].MeasureParameters[measureParIndex])) {
+    element.innerHTML = "";
+  } else {
+  element.innerHTML = markers[targetId].MeasureParameters[measureParIndex].CurrentValue;
+  };
+}
+
 function onClickMarker(e) {
+  
   /* targetID shows stationCode (name for code purposes) */
   targetId = e.currentTarget.dataset.stationCode;
-  /* stationData shows target station data */
-//   if (targetId === markers[target].Code) {
-//     console.log("hej");
-//   }
-    // e.currentTarget.classList.toggle("active");
-    //   console.log(e.currentTarget.classList);
-
   // Name
   const infoHeader = document.getElementById("stationName");
   infoHeader.innerHTML = markers[targetId].Name;
@@ -68,49 +76,10 @@ function onClickMarker(e) {
   const infoLongitude = document.getElementById("stationLong");
   infoLongitude.innerHTML = ",  " + markers[targetId].Long;
 
-
-
-  // Water Level
-  const infoWaterLevelDOM = document.getElementById("waterLevel");
-  if (checkIfUndefined(markers[targetId].MeasureParameters[0])) {
-    infoWaterLevelDOM.innerHTML = "";
-  } else {
-  infoWaterLevelDOM.innerHTML = markers[targetId].MeasureParameters[0].CurrentValue;
-  };
-
-
-  // Level down stream
-  const infoLevelDownstreamDOM = document.getElementById("levelDownstream");
-  if (checkIfUndefined(markers[targetId].MeasureParameters[1])) {
-    infoLevelDownstreamDOM.innerHTML = "";
-  } else {
-  infoLevelDownstreamDOM.innerHTML =
-    markers[targetId].MeasureParameters[1].CurrentValue;
-  }
-
-  // Tapping
-  const infoTappingDOM = document.getElementById("tapping");
-  if (checkIfUndefined(markers[targetId].MeasureParameters[2])) {
-    infoTappingDOM.innerHTML = "";
-  } else {
-  infoTappingDOM.innerHTML = markers[targetId].MeasureParameters[2].CurrentValue;
-  }
-
-  // Lower Level
-  const infoLowerLimitDOM = document.getElementById("lowerLimit");
-  if (checkIfUndefined(markers[targetId].MeasureParameters[3])) {
-    infoLowerLimitDOM.innerHTML = "";
-  } else {
-  infoLowerLimitDOM.innerHTML = markers[targetId].MeasureParameters[3].CurrentValue;
-  }
-
-  // Upper Level
-  const infoUpperLimitDOM = document.getElementById("upperLimit");
-  if (checkIfUndefined(markers[targetId].MeasureParameters[4])) {
-    infoUpperLimitDOM.innerHTML = "";
-  } else {
-  infoUpperLimitDOM.innerHTML = markers[targetId].MeasureParameters[4].CurrentValue;
-}
+  // Fill the DOM elements
+  DOMelementsName.forEach((element, index) => {
+    fillDOMElement(document.getElementById(element), targetId, index);
+  });
 }
 
 fetch(
