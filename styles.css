@@ -4,22 +4,37 @@
 
 @font-face {
   font-family: "Nunito";
-  src: local("Nunito"),
-  url("src/fonts/Nunito-VariableFont_wght.ttf");
+  src: local("Nunito"), url("src/fonts/Nunito-VariableFont_wght.ttf");
 }
 
-html,body {
+html,
+body {
   box-sizing: border-box;
-  margin:0;
+  margin: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   font-family: "Nunito";
   color: #085677;
+  background-color: #f3f8fa;
+}
+header {
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+#map {
+  width: 100vw;
+  height: 70vh;
 }
 
 .marker {
-  background-image: url('src/marker-icon.svg');
+  background-image: url("src/marker-icon.svg");
   background-size: 100%;
   width: 1.5rem;
   height: 2rem;
@@ -41,32 +56,35 @@ html,body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
-  height: 40%;
-  width: 100%;
+
+  bottom: 15%;
+  height: auto;
+  width: 80%;
   margin: auto;
   padding: 3rem;
   z-index: 1;
-  background-color: #F3F8FA;
-  border-top: 1px solid #085677;
+
+  position: absolute;
+  background-color: #f3f8fa;
+  border: 1px solid #085677;
 }
 
-
-
 h3 {
-    margin-bottom: 0.5rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
   font-size: 1.5rem;
   font-weight: bold;
 }
 
-h4, p {
+h4,
+p {
   font-size: 1rem;
   margin: 0;
 }
 
 td {
   font-size: 0.8rem;
-line-height: 1.5rem;
+  line-height: 1.5rem;
 }
 
 h4 {
@@ -90,7 +108,7 @@ h4 {
   cursor: pointer;
 }
 
-.coordinatesContainer{
+.coordinatesContainer {
   display: flex;
   flex-direction: row;
   margin-bottom: 2rem;
@@ -101,7 +119,15 @@ h4 {
     width: 24rem;
     border: 1px solid #085677;
     position: absolute;
-    top: 50%;
+    top: 40%;
     height: 49.5%;
+
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+
+  #map {
+    height: 80vh;
   }
 }
