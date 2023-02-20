@@ -21,8 +21,8 @@ html,body {
 .marker {
   background-image: url('src/marker-icon.svg');
   background-size: 100%;
-  width: 25px;
-  height: 43px;
+  width: 1.5rem;
+  height: 2rem;
   display: block;
   border: none;
   cursor: pointer;
