@@ -1,43 +1,38 @@
-  * {
-    box-sizing: border-box;
-  }
-
-  @font-face {
-    font-family: "Nunito";
-    src: local("Nunito"),
-    url("src/fonts/Nunito-VariableFont_wght.ttf");
-  }
-
-  html,body {
-    box-sizing: border-box;
-    margin:0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    font-family: "Nunito";
-    color: #085677;
-  }
-
-  .marker {
-    background-image: url('src/marker-icon.svg');
-    background-size: 100%;
-    width: 25px;
-    height: 43px;
-    display: block;
-    border: none;
-    cursor: pointer;
-    padding: 0;
+* {
+  box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "Nunito";
+  src: local("Nunito"),
+  url("src/fonts/Nunito-VariableFont_wght.ttf");
+}
 
-  .marker:hover {
-    filter: opacity(0.5);
-  }
+html,body {
+  box-sizing: border-box;
+  margin:0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-family: "Nunito";
+  color: #085677;
+}
 
+.marker {
+  background-image: url('src/marker-icon.svg');
+  background-size: 100%;
+  width: 25px;
+  height: 43px;
+  display: block;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
 
- /* .marker:hover svg:not() */
+.marker:hover {
+  filter: opacity(0.5);
+}
 
-/* Info Box */
 .infoBox {
   display: none;
 }
@@ -49,12 +44,12 @@
   align-items: center;
   position: absolute;
   height: 40%;
-  width: 90%;
+  width: 100%;
   margin: auto;
   padding: 4rem;
   z-index: 1;
   background-color: #F3F8FA;
-  border: 1px solid #085677;
+  border-top: 1px solid #085677;
 }
 
 h3 {
@@ -85,5 +80,14 @@ td {
 
 .exitButton img {
   object-fit: cover;
+  cursor: pointer;
 }
 
+@media only screen and (min-width: 680px) {
+  .infoBox.active {
+    width: 90%;
+    max-width: 900px;
+    border: 1px solid #085677;
+    border-bottom: none;
+  }
+}
