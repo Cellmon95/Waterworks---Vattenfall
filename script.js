@@ -6,6 +6,7 @@ const exitBox = document.querySelector(".exitButton");
 function createAddMarker(response) {
   const customMarker = document.createElement("svg");
   customMarker.className = "marker";
+  customMarker.dataset.stationCode = response.Code;
 
   const marker = {
     mapboxgl: new mapboxgl.Marker(customMarker),
@@ -20,7 +21,7 @@ function createAddMarker(response) {
   marker.mapboxgl.getElement().dataset.stationCode = response.Code;
   marker.mapboxgl.getElement().addEventListener("click", onClickMarker);
   marker.mapboxgl.getElement().addEventListener("click", onClickOpenInfoBox);
-//   marker.mapboxgl.getElement().addEventListener("mouseleave", onClickOpenInfoBox);
+  // marker.mapboxgl.getElement().addEventListener("mouseleave", onClickOpenInfoBox);
   // marker.mapboxgl.getElement().classList.add("marker"); // Remove? Might not need this after adding "customMarker".
 
   return marker;
@@ -29,8 +30,6 @@ function createAddMarker(response) {
 
 
 function onClickOpenInfoBox(e) {
-//   e.currentTarget.classList.toggle("active");
-//   console.log(e.currentTarget.classList);
   infoBox.classList.add("active");
 }
 
@@ -51,58 +50,66 @@ function onClickMarker(e) {
   /* targetID shows stationCode (name for code purposes) */
   targetId = e.currentTarget.dataset.stationCode;
   /* stationData shows target station data */
+//   if (targetId === markers[target].Code) {
+//     console.log("hej");
+//   }
+    // e.currentTarget.classList.toggle("active");
+    //   console.log(e.currentTarget.classList);
 
   // Name
-  const header = document.getElementById("stationName");
-  header.innerHTML = markers[targetId].Name;
+  const infoHeader = document.getElementById("stationName");
+  infoHeader.innerHTML = markers[targetId].Name;
 
   //Lat (stationLat)
+  const infoLatitude = document.getElementById("stationLat");
+  infoLatitude.innerHTML = markers[targetId].Lat;
 
   //Long (stationLong)
-  
+  const infoLongitude = document.getElementById("stationLong");
+  infoLongitude.innerHTML = markers[targetId].Long;
 
 
 
   // Water Level
-  const waterLevelDOM = document.getElementById("waterLevel");
+  const infoWaterLevelDOM = document.getElementById("waterLevel");
   if (checkIfUndefined(markers[targetId].MeasureParameters[0])) {
-    waterLevelDOM.innerHTML = "";
+    infoWaterLevelDOM.innerHTML = "";
   } else {
-  waterLevelDOM.innerHTML = markers[targetId].MeasureParameters[0].CurrentValue;
+  infoWaterLevelDOM.innerHTML = markers[targetId].MeasureParameters[0].CurrentValue;
   };
 
 
   // Level down stream
-  const levelDownstreamDOM = document.getElementById("levelDownstream");
+  const infoLevelDownstreamDOM = document.getElementById("levelDownstream");
   if (checkIfUndefined(markers[targetId].MeasureParameters[1])) {
-    levelDownstreamDOM.innerHTML = "";
+    infoLevelDownstreamDOM.innerHTML = "";
   } else {
-  levelDownstreamDOM.innerHTML =
+  infoLevelDownstreamDOM.innerHTML =
     markers[targetId].MeasureParameters[1].CurrentValue;
   }
 
   // Tapping
-  const tappingDOM = document.getElementById("tapping");
+  const infoTappingDOM = document.getElementById("tapping");
   if (checkIfUndefined(markers[targetId].MeasureParameters[2])) {
-    tappingDOM.innerHTML = "";
+    infoTappingDOM.innerHTML = "";
   } else {
-  tappingDOM.innerHTML = markers[targetId].MeasureParameters[2].CurrentValue;
+  infoTappingDOM.innerHTML = markers[targetId].MeasureParameters[2].CurrentValue;
   }
 
   // Lower Level
-  const lowerLimitDOM = document.getElementById("lowerLimit");
+  const infoLowerLimitDOM = document.getElementById("lowerLimit");
   if (checkIfUndefined(markers[targetId].MeasureParameters[3])) {
-    lowerLimitDOM.innerHTML = "";
+    infoLowerLimitDOM.innerHTML = "";
   } else {
-  lowerLimitDOM.innerHTML = markers[targetId].MeasureParameters[3].CurrentValue;
+  infoLowerLimitDOM.innerHTML = markers[targetId].MeasureParameters[3].CurrentValue;
   }
 
   // Upper Level
-  const upperLimitDOM = document.getElementById("upperLimit");
+  const infoUpperLimitDOM = document.getElementById("upperLimit");
   if (checkIfUndefined(markers[targetId].MeasureParameters[4])) {
-    upperLimitDOM.innerHTML = "";
+    infoUpperLimitDOM.innerHTML = "";
   } else {
-  upperLimitDOM.innerHTML = markers[targetId].MeasureParameters[4].CurrentValue;
+  infoUpperLimitDOM.innerHTML = markers[targetId].MeasureParameters[4].CurrentValue;
 }
 }
 
