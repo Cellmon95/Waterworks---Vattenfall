@@ -35,7 +35,7 @@ function createAddMarker(response) {
 
 
 
-function onClickOpenInfoBox(e) {
+function onClickOpenInfoBox() {
   infoBox.classList.add("active");
 }
 
@@ -61,7 +61,14 @@ function fillDOMElement(element, targetId, measureParIndex) {
 }
 
 function onClickMarker(e) {
-  
+  //Make the map fly to the marker.
+  map.on('click', () => {
+    map.flyTo({
+    center: [markers[targetId].Long, markers[targetId].Lat-0.002],
+    zoom: 14.5
+    });
+    });
+
   /* targetID shows stationCode (name for code purposes) */
   targetId = e.currentTarget.dataset.stationCode;
   // Name
