@@ -22,6 +22,7 @@ body {
   font-family: "Nunito";
   color: var(--dark-blue);
   background-color: var(--light-blue);
+  scroll-behavior: smooth;
 }
 
 header {
@@ -147,6 +148,7 @@ footer {
   width: 100%;
   display:flex;
   align-items: flex-start;
+  flex-direction: column;
 }
 
 .about {
@@ -169,6 +171,12 @@ footer {
     margin: 0 auto;
   }
 
+  .footerATag{
+    color: black;
+    text-decoration: none;
+    padding-left: 0.5rem;
+    padding-top: 0.2rem;
+  }
 
   #map {
     height: 95vh;
@@ -177,10 +185,11 @@ footer {
   footer {
     width: 100%;
     display:flex;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .about {
     margin-left: 4rem;
+    align-self: flex-start;
   }
 }

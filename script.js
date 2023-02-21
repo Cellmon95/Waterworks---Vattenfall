@@ -2,14 +2,13 @@ const APPID = "0bed6060-47a2-4594-8a5a-5bb3ff8a01d7";
 const markers = [];
 const infoBox = document.querySelector(".infoBox");
 const exitBox = document.querySelector(".exitButton");
-const infoBoxDomElements = [
+const DOMelementsName = [
   'waterLevel',
   'levelDownstream',
   'tapping',
   'lowerLimit',
   'upperLimit'
 ];
-
 function createAddMarker(response) {
   const customMarker = document.createElement("svg");
   customMarker.className = "marker";
@@ -28,16 +27,18 @@ function createAddMarker(response) {
   marker.mapboxgl.getElement().dataset.stationCode = response.Code;
   marker.mapboxgl.getElement().addEventListener("click", onClickMarker);
   marker.mapboxgl.getElement().addEventListener("click", onClickOpenInfoBox);
-
+  marker.mapboxgl.getElement().addEventListener('mouseenter', onMouseEnter)
   // marker.mapboxgl.getElement().addEventListener("mouseleave", onClickOpenInfoBox);
   // marker.mapboxgl.getElement().classList.add("marker"); // Remove? Might not need this after adding "customMarker".
 
   return marker;
 }
 
+function onMouseEnter(e) {
+  targetId = e.currentTarget.dataset.stationCode;
+}
 
-
-function onClickOpenInfoBox() {
+function onClickOpenInfoBox(e) {
   infoBox.classList.add("active");
 }
 
@@ -64,7 +65,7 @@ function checkIfUndefined(target) {
   return false;
 }
 
-function fillInfoBox(element, targetId, measureParIndex) {
+function fillDOMElement(element, targetId, measureParIndex) {
   if (checkIfUndefined(markers[targetId].MeasureParameters[measureParIndex])) {
     element.innerHTML = "";
   } else {
@@ -83,22 +84,21 @@ function onClickMarker(e) {
 
   /* targetID shows stationCode (name for code purposes) */
   targetId = e.currentTarget.dataset.stationCode;
-
-  /* Station Name (Description) */
+  // Name
   const infoHeader = document.getElementById("stationName");
   infoHeader.innerHTML = markers[targetId].Name;
 
-  /* Station Latitude (Lat) */
+  //Lat (stationLat)
   const infoLatitude = document.getElementById("stationLat");
   infoLatitude.innerHTML = "Position: "+ markers[targetId].Lat;
 
-  /* Station Longitude (Long) */
+  //Long (stationLong)
   const infoLongitude = document.getElementById("stationLong");
   infoLongitude.innerHTML = ",  " + markers[targetId].Long;
 
-  // Fill the Info Box
-  infoBoxDomElements.forEach((element, index) => {
-    fillInfoBox(document.getElementById(element), targetId, index);
+  // Fill the DOM elements
+  DOMelementsName.forEach((element, index) => {
+    fillDOMElement(document.getElementById(element), targetId, index);
   });
 }
 
