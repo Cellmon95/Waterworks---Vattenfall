@@ -172,10 +172,11 @@ footer {
   footer {
     width: 100%;
     display:flex;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .about {
     margin-left: 4rem;
+    align-self: flex-start;
   }
 }

@@ -36,8 +36,6 @@ function createAddMarker(response) {
 
 function onMouseEnter(e) {
   targetId = e.currentTarget.dataset.stationCode;
-
-  
 }
 
 function onClickOpenInfoBox(e) {
