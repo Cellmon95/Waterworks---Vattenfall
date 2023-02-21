@@ -25,6 +25,12 @@ body {
   scroll-behavior: smooth;
 }
 
+h1 {
+  font-size: 1.8rem;
+  text-align: center;
+  letter-spacing: 0.1rem;
+}
+
 header {
   position: absolute;
   z-index: 10;
@@ -69,18 +75,19 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* bottom: 15%; */
   bottom: 0;
   height: 25rem;
   width: 100%;
-  /* max-width: 384px; */
   margin: auto;
   padding: 3rem;
   z-index: 1;
   position: absolute;
   background-color: var(--light-blue);
   border: 1px solid var(--dark-blue);
-  /* animation: infoBoxPopUp .7s ease; */
+}
+
+.marker.not-active {
+  filter: opacity(0.5);
 }
 
 @keyframes infoBoxPopUp {
@@ -148,7 +155,8 @@ footer {
 }
 
 .footerATag {
-  color: black;
+  color: var(--dark-blue);
+  font-weight: bold;
   text-decoration: none;
   padding:0.5rem 0 1rem 0;
 }
@@ -170,13 +178,14 @@ footer {
   align-items: center;
 }
 
-.about {
-  margin-left: 4rem;
-  align-self: flex-start;
-}
-
-
 @media only screen and (min-width: 680px) {
+  
+  h1 {
+    font-size: 2rem;
+    text-align: center;
+    letter-spacing: 0.2rem;
+  }
+
   .infoBox.active {
     width: 24rem;
     height: 4rem;

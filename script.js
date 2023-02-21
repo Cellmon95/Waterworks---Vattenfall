@@ -29,20 +29,29 @@ function createAddMarker(response) {
   marker.mapboxgl.getElement().dataset.stationCode = response.Code;
   marker.mapboxgl.getElement().addEventListener("click", onClickMarker);
   marker.mapboxgl.getElement().addEventListener("click", onClickOpenInfoBox);
-  marker.mapboxgl.getElement().addEventListener('mouseenter', onMouseEnter);
+
 
   return marker;
 }
 
-function onMouseEnter(e) {
-  targetId = e.currentTarget.dataset.stationCode;
-}
-
 function onClickOpenInfoBox(e) {
   infoBox.classList.add("active");
+  const allMarkers = document.querySelectorAll(".marker");
+  allMarkers.forEach(eachMarker => {
+    eachMarker.classList.add("not-active");
+  });
+  e.currentTarget.classList.remove("not-active")
 }
 
-//Functions for closing down the info box.
+function closeInfoBox() {
+    mapZoomOut();
+    infoBox.classList.remove("active");
+    const allMarkers = document.querySelectorAll(".marker");
+    allMarkers.forEach(eachMarker => {
+      eachMarker.classList.remove("not-active");
+    });
+}
+
 function mapZoomOut() {
   map.flyTo({
     zoom: 10.3,
@@ -50,15 +59,9 @@ function mapZoomOut() {
   });
 }
 
-function closeInfoBox() {
-    mapZoomOut();
-    infoBox.classList.remove("active");
-}
-
 exitBox.addEventListener("click", closeInfoBox);
 
 
-//Func
 function checkIfUndefined(target) {
   if (target === undefined) {
     return true;
