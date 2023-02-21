@@ -47,9 +47,11 @@ header {
 
 .marker {
   background-image: url("src/marker-icon.svg");
-  background-size: 100%;
-  width: 1.5rem;
-  height: 2rem;
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 2.8rem;
+  height: 2.8rem;
   display: block;
   border: none;
   cursor: pointer;
@@ -57,10 +59,9 @@ header {
 }
 
 .marker:hover {
-  background-size: 120%;
-  background-position: center bottom;
-  height: 2.5rem;
-  transition: background-size, background-position, height, .3s ease-in-out ;
+  background-size: 95%;
+  height: 3.7rem;
+  transition: background-size .3s ease-in-out ;
 }
 
 .infoBox {
@@ -82,8 +83,20 @@ header {
   position: absolute;
   background-color: var(--light-blue);
   border: 1px solid var(--dark-blue);
+  /* animation: infoBoxPopUp .7s ease; */
 }
 
+@keyframes infoBoxPopUp {
+  from {
+    bottom: 0;
+    transform: translateY(-25rem);
+  }
+  to {
+    bottom: 0;
+    transform: translateY(0);
+  }
+  
+}
 h3 {
   margin-top: 0;
   margin-bottom: 0.5rem;
