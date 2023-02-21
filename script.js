@@ -2,13 +2,14 @@ const APPID = "0bed6060-47a2-4594-8a5a-5bb3ff8a01d7";
 const markers = [];
 const infoBox = document.querySelector(".infoBox");
 const exitBox = document.querySelector(".exitButton");
-const DOMelementsName = [
+const infoBoxDomElements = [
   'waterLevel',
   'levelDownstream',
   'tapping',
   'lowerLimit',
   'upperLimit'
 ];
+
 function createAddMarker(response) {
   const customMarker = document.createElement("svg");
   customMarker.className = "marker";
@@ -27,6 +28,7 @@ function createAddMarker(response) {
   marker.mapboxgl.getElement().dataset.stationCode = response.Code;
   marker.mapboxgl.getElement().addEventListener("click", onClickMarker);
   marker.mapboxgl.getElement().addEventListener("click", onClickOpenInfoBox);
+
   // marker.mapboxgl.getElement().addEventListener("mouseleave", onClickOpenInfoBox);
   // marker.mapboxgl.getElement().classList.add("marker"); // Remove? Might not need this after adding "customMarker".
 
@@ -43,7 +45,16 @@ function closeInfoBox() {
     infoBox.classList.remove("active");
 }
 
-exitBox.addEventListener("click", closeInfoBox);
+function mapZoomOut() {
+  Map({
+    center: [11.97, 57.7],
+    zoom: 12,
+  })
+}
+
+// exitBox.addEventListener("click", closeInfoBox);
+exitBox.addEventListener("click", closeInfoBox, mapZoomOut);
+
 
 function checkIfUndefined(target) {
   if (target === undefined) {
@@ -52,7 +63,7 @@ function checkIfUndefined(target) {
   return false;
 }
 
-function fillDOMElement(element, targetId, measureParIndex) {
+function fillInfoBox(element, targetId, measureParIndex) {
   if (checkIfUndefined(markers[targetId].MeasureParameters[measureParIndex])) {
     element.innerHTML = "";
   } else {
@@ -61,31 +72,32 @@ function fillDOMElement(element, targetId, measureParIndex) {
 }
 
 function onClickMarker(e) {
-  //Make the map fly to the marker.
+  /* Make the map fly to the marker. */
   map.on('click', () => {
     map.flyTo({
-    center: [markers[targetId].Long, markers[targetId].Lat-0.002],
-    zoom: 14.5
+        center: [markers[targetId].Long, markers[targetId].Lat],
+        zoom: 12,
     });
-    });
+});
 
   /* targetID shows stationCode (name for code purposes) */
   targetId = e.currentTarget.dataset.stationCode;
-  // Name
+
+  /* Station Name (Description) */
   const infoHeader = document.getElementById("stationName");
   infoHeader.innerHTML = markers[targetId].Name;
 
-  //Lat (stationLat)
+  /* Station Latitude (Lat) */
   const infoLatitude = document.getElementById("stationLat");
   infoLatitude.innerHTML = "Position: "+ markers[targetId].Lat;
 
-  //Long (stationLong)
+  /* Station Longitude (Long) */
   const infoLongitude = document.getElementById("stationLong");
   infoLongitude.innerHTML = ",  " + markers[targetId].Long;
 
-  // Fill the DOM elements
-  DOMelementsName.forEach((element, index) => {
-    fillDOMElement(document.getElementById(element), targetId, index);
+  // Fill the Info Box
+  infoBoxDomElements.forEach((element, index) => {
+    fillInfoBox(document.getElementById(element), targetId, index);
   });
 }
 
