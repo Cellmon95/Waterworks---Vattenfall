@@ -37,6 +37,10 @@ header {
   background-color: var(--light-blue);
 }
 
+h1 {
+  text-align: center;
+}
+
 #map {
   width: 100vw;
   height: 100vh;
@@ -92,7 +96,7 @@ header {
     bottom: 0;
     transform: translateY(0);
   }
-  
+
 }
 h3 {
   margin-top: 0;
@@ -148,7 +152,8 @@ footer {
 }
 
 .footerATag {
-  color: black;
+  color: var(--dark-blue);
+  font-weight: bold;
   text-decoration: none;
   padding:0.5rem 0 1rem 0;
 }
