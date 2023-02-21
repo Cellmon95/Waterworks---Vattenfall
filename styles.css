@@ -37,10 +37,6 @@ header {
   background-color: var(--light-blue);
 }
 
-/* h1 {
-  text-align: center;
-} */
-
 #map {
   width: 100vw;
   height: 100vh;
@@ -151,6 +147,10 @@ footer {
   flex-direction: column;
 }
 
+.footerATag {
+  padding:0.5rem 0 1rem 0;
+}
+
 .about {
   padding-top: 4rem;
   padding-bottom: 4rem;
@@ -174,8 +174,6 @@ footer {
   .footerATag{
     color: black;
     text-decoration: none;
-    padding-left: 0.5rem;
-    padding-top: 0.2rem;
   }
 
   #map {

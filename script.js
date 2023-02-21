@@ -1,7 +1,7 @@
 const APPID = "0bed6060-47a2-4594-8a5a-5bb3ff8a01d7";
-const markers = [];
 const infoBox = document.querySelector(".infoBox");
 const exitBox = document.querySelector(".exitButton");
+const markers = [];
 const DOMelementsName = [
   'waterLevel',
   'levelDownstream',
@@ -9,6 +9,8 @@ const DOMelementsName = [
   'lowerLimit',
   'upperLimit'
 ];
+
+//Adding the markers.
 function createAddMarker(response) {
   const customMarker = document.createElement("svg");
   customMarker.className = "marker";
@@ -27,9 +29,7 @@ function createAddMarker(response) {
   marker.mapboxgl.getElement().dataset.stationCode = response.Code;
   marker.mapboxgl.getElement().addEventListener("click", onClickMarker);
   marker.mapboxgl.getElement().addEventListener("click", onClickOpenInfoBox);
-  marker.mapboxgl.getElement().addEventListener('mouseenter', onMouseEnter)
-  // marker.mapboxgl.getElement().addEventListener("mouseleave", onClickOpenInfoBox);
-  // marker.mapboxgl.getElement().classList.add("marker"); // Remove? Might not need this after adding "customMarker".
+  marker.mapboxgl.getElement().addEventListener('mouseenter', onMouseEnter);
 
   return marker;
 }
@@ -42,11 +42,7 @@ function onClickOpenInfoBox(e) {
   infoBox.classList.add("active");
 }
 
-function closeInfoBox() {
-    mapZoomOut()
-    infoBox.classList.remove("active");
-}
-
+//Functions for closing down the info box.
 function mapZoomOut() {
   map.flyTo({
     zoom: 10.3,
@@ -54,10 +50,15 @@ function mapZoomOut() {
   });
 }
 
-// exitBox.addEventListener("click", closeInfoBox);
-exitBox.addEventListener("click", closeInfoBox, mapZoomOut);
+function closeInfoBox() {
+    mapZoomOut();
+    infoBox.classList.remove("active");
+}
+
+exitBox.addEventListener("click", closeInfoBox);
 
 
+//Func
 function checkIfUndefined(target) {
   if (target === undefined) {
     return true;
@@ -81,6 +82,9 @@ function onClickMarker(e) {
         zoom: 12,
     });
 });
+
+  //Push down the footer if it's showing.
+  document.querySelector('.backButton').click();
 
   /* targetID shows stationCode (name for code purposes) */
   targetId = e.currentTarget.dataset.stationCode;
@@ -110,7 +114,6 @@ fetch(
     response.forEach((station) => {
       markers[station.Code] = createAddMarker(station);
     });
-    console.log(markers);
   });
 
 mapboxgl.accessToken =
@@ -121,7 +124,7 @@ var map = new mapboxgl.Map({
   style: "mapbox://styles/anbru/cldvgf4im001j01ol6fci2pk2",
   center: [11.97, 57.7],
   zoom: 10.3,
-  minZoom: 9,
+  minZoom: 10,
   maxZoom: 18,
 });
 
