@@ -42,14 +42,15 @@ function onClickOpenInfoBox() {
 }
 
 function closeInfoBox() {
+    mapZoomOut()
     infoBox.classList.remove("active");
 }
 
 function mapZoomOut() {
-  Map({
-    center: [11.97, 57.7],
-    zoom: 12,
-  })
+  map.flyTo({
+    zoom: 10.3,
+    center: [11.97, 57.7]
+  });
 }
 
 // exitBox.addEventListener("click", closeInfoBox);
@@ -75,7 +76,7 @@ function onClickMarker(e) {
   /* Make the map fly to the marker. */
   map.on('click', () => {
     map.flyTo({
-        center: [markers[targetId].Long, markers[targetId].Lat],
+        center: [markers[targetId].Long, markers[targetId].Lat-0.012],
         zoom: 12,
     });
 });
@@ -119,8 +120,8 @@ var map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/anbru/cldvgf4im001j01ol6fci2pk2",
   center: [11.97, 57.7],
-  zoom: 12,
-  minZoom: 11,
+  zoom: 10.3,
+  minZoom: 9,
   maxZoom: 18,
 });
 
