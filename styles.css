@@ -129,6 +129,14 @@ h4 {
   margin: 1rem 0;
 }
 
+table {
+  width: 100%;
+}
+
+tr {
+  justify-content: space-between;
+}
+
 .exitButton {
   position: absolute;
   right: 0;
@@ -147,7 +155,9 @@ h4 {
 }
 
 .coordinatesContainer {
+  width: 100%;
   display: flex;
+  justify-content: center;
   flex-direction: row;
   margin-bottom: 2rem;
 }

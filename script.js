@@ -71,7 +71,7 @@ function checkIfUndefined(target) {
 
 function fillDOMElement(element, targetId, measureParIndex) {
   if (checkIfUndefined(markers[targetId].MeasureParameters[measureParIndex])) {
-    element.innerHTML = "";
+    element.innerHTML = "n/a";
   } else {
   element.innerHTML = markers[targetId].MeasureParameters[measureParIndex].CurrentValue;
   };
@@ -95,13 +95,9 @@ function onClickMarker(e) {
   const infoHeader = document.getElementById("stationName");
   infoHeader.innerHTML = markers[targetId].Name;
 
-  //Lat (stationLat)
-  const infoLatitude = document.getElementById("stationLat");
-  infoLatitude.innerHTML = "Position: "+ markers[targetId].Lat;
-
-  //Long (stationLong)
-  const infoLongitude = document.getElementById("stationLong");
-  infoLongitude.innerHTML = ",  " + markers[targetId].Long;
+  //Lat & Long(station positioning)
+  const infoStationPosition = document.getElementById("stationPos");
+  infoStationPosition.innerHTML = ": " + markers[targetId].Lat + ",  " + markers[targetId].Long;
 
   // Fill the DOM elements
   DOMelementsName.forEach((element, index) => {
